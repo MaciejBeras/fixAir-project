@@ -1,10 +1,13 @@
 package pl.coderslab.fixairproject.model;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,5 +35,9 @@ public class Client {
   private String phoneNumber;
 
   private String address;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "device_id", referencedColumnName = "id")
+  private Device device;
 
 }
