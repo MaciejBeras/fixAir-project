@@ -14,7 +14,7 @@ import pl.coderslab.fixairproject.repository.ClientRepository;
 @RequiredArgsConstructor
 public class ClientService {
 
-  private ClientRepository clientRepository;
+  private final ClientRepository clientRepository;
 
   public List<Client> getAllClients() {
     return clientRepository.findAll();
