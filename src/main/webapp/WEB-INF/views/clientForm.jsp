@@ -7,17 +7,17 @@
     <meta charset="UTF-8">
     <title>Client Form</title>
     <style>
-        .error{
-            color: red;
-            font-weight: bold;
-        }
+      .error {
+        color: red;
+        font-weight: bold;
+      }
 
     </style>
 </head>
 <body>
 <nav>
     <a href="${pageContext.request.contextPath}/client/form">Add New Client</a> |
-    <a href="${pageContext.request.contextPath}/books/form/all">Client List</a> |
+    <a href="${pageContext.request.contextPath}/client/form/all">Client List</a> |
     <a href="${pageContext.request.contextPath}/authors/form">Add New Author</a> |
     <a href="${pageContext.request.contextPath}/authors/form/all">Author List</a> |
     <a href="${pageContext.request.contextPath}/publishers/form">Add New Publisher</a> |
@@ -33,7 +33,7 @@
 
     <label for="lastName">Last Name:</label>
     <form:input path="lastName" id="lastName" required="true"/><br><br>
-    <form:errors path="lastName"  element="div" cssClass="error"/>
+    <form:errors path="lastName" element="div" cssClass="error"/>
 
     <label for="gender">Gender:</label>
     <form:radiobuttons path="gender" items="${genders}" required="true"/><br><br>
@@ -41,15 +41,15 @@
 
     <label for="lastName"> Email:</label>
     <form:input path="email" id="email" required="true"/><br><br>
-    <form:errors path="email"  element="div" cssClass="error"/>
+    <form:errors path="email" element="div" cssClass="error"/>
 
     <label for="phoneNumber"> Phone number:</label>
     <form:input path="phoneNumber" id="phoneNumber" required="true"/><br><br>
-    <form:errors path="phoneNumber"  element="div" cssClass="error"/>
+    <form:errors path="phoneNumber" element="div" cssClass="error"/>
 
     <label for="address"> Address:</label>
     <form:input path="address" id="address" required="true"/><br><br>
-    <form:errors path="address"  element="div" cssClass="error"/>
+    <form:errors path="address" element="div" cssClass="error"/>
     <button type="submit">Submit</button>
 </form:form>
 </body>

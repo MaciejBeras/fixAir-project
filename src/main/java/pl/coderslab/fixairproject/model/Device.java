@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,7 +27,7 @@ public class Device {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
 
   private String name;
 
@@ -38,7 +40,8 @@ public class Device {
   @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ServiceRecord> serviceRecords = new ArrayList<>();
 
-  @OneToOne(mappedBy = "device")
+  @ManyToOne
+  @JoinColumn(name = "client_id", nullable = false)
   private Client client;
 
 }

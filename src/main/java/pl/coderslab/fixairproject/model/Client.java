@@ -9,10 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,7 +29,7 @@ public class Client {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
 
   @NotEmpty(message = "First name is required")
   private String firstName;
@@ -35,7 +38,7 @@ public class Client {
   private String lastName;
 
   @NotNull(message = "Gender is required")
-  @Enumerated(EnumType.ORDINAL)
+  @Enumerated(EnumType.STRING)
   private Gender gender;
 
   @NotEmpty(message = "Email is required")
@@ -47,8 +50,9 @@ public class Client {
   @NotEmpty(message = "Address is required")
   private String address;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "device_id", referencedColumnName = "id")
-  private Device device;
+  @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Device> devices = new ArrayList<>();
 
 }
+
+
