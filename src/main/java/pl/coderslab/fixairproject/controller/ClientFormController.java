@@ -46,7 +46,7 @@ public class ClientFormController {
     }
     clientService.saveClient(client);
     log.info("Saved {}", client);
-    return "redirect:/client/form";
+    return "redirect:/client/form/all";
   }
 
   @PostMapping("/edit/{id}")

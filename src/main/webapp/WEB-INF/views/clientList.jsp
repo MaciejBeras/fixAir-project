@@ -37,6 +37,7 @@
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary fixair-button">FixAir</a>
                 <a href="${pageContext.request.contextPath}/client/form" class="btn btn-primary">Add New Client</a>
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary">Client List</a>
+                <a href="${pageContext.request.contextPath}/device/form" class="btn btn-primary">Add New Device</a>
                 <a href="${pageContext.request.contextPath}/authors/form" class="btn btn-primary">All devices list</a>
                 <a href="${pageContext.request.contextPath}/authors/form/all" class="btn btn-primary">All services history</a>
                 <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Contact</a>
@@ -66,9 +67,11 @@
                         <td>${client.phoneNumber}</td>
                         <td>${client.address}</td>
                         <td>
-                            <form:form action="/device/form/${client.id}" method="post" class="d-inline">
+                            <form action="${pageContext.request.contextPath}/device/form" method="get" class="d-inline">
+                                <input type="hidden" name="clientId" value="${client.id}"/>
                                 <input type="submit" value="Add Device" class="btn btn-warning btn-sm"/>
-                            </form:form>
+                            </form>
+
                             <form:form action="/client/form/edit/${client.id}" method="post" class="d-inline">
                                 <input type="submit" value="Edit" class="btn btn-warning btn-sm"/>
                             </form:form>

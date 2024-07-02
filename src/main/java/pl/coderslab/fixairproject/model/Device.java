@@ -20,7 +20,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "device")
 public class Device {
@@ -37,11 +36,13 @@ public class Device {
 
   private LocalDateTime serviceDate;
 
+  @OneToOne
+  @JoinColumn(name = "client_id", nullable = false)
+  private Client client;
+
   @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ServiceRecord> serviceRecords = new ArrayList<>();
 
-  @ManyToOne
-  @JoinColumn(name = "client_id", nullable = false)
-  private Client client;
+  
 
 }

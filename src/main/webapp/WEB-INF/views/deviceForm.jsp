@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Client Form</title>
+    <title>Device Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -44,46 +44,35 @@
             </nav>
         </div>
         <div class="col-md-9">
-            <h2>Client Form</h2>
-            <form:form action="/client/form" modelAttribute="client" method="post">
+            <h2>Device Form</h2>
+            <form:form action="${pageContext.request.contextPath}/device/form" modelAttribute="device" method="post">
 
                 <form:hidden path="id" id="id"/>
+                <form:hidden path="client.id" id="clientId"/>
 
                 <div class="mb-3">
-                    <label for="firstName" class="form-label">First Name:</label>
-                    <form:input path="firstName" class="form-control" id="firstName" required="true"/>
-                    <form:errors path="firstName" element="div" cssClass="error"/>
+                    <label for="name" class="form-label">Name:</label>
+                    <form:input path="name" class="form-control" id="name" required="true"/>
+                    <form:errors path="name" element="div" cssClass="error"/>
                 </div>
 
                 <div class="mb-3">
-                    <label for="lastName" class="form-label">Last Name:</label>
-                    <form:input path="lastName" class="form-control" id="lastName" required="true"/>
-                    <form:errors path="lastName" element="div" cssClass="error"/>
+                    <label for="serialNumber" class="form-label">Serial Number:</label>
+                    <form:input path="serialNumber" class="form-control" id="serialNumber" required="true"/>
+                    <form:errors path="serialNumber" element="div" cssClass="error"/>
                 </div>
 
-                <div class="mb-3">
-                    <label for="gender" class="form-label">Gender:</label>
-                    <form:radiobuttons path="gender" class="form-check-input" items="${genders}" required="true"/>
-                    <form:errors path="gender" element="div" cssClass="error"/>
-                </div>
+<%--                <div class="mb-3">--%>
+<%--                    <label for="installationDate" class="form-label">Installation Date:</label>--%>
+<%--                    <form:input path="installationDate" class="form-control" id="installationDate" required="true"/>--%>
+<%--                    <form:errors path="installationDate" element="div" cssClass="error"/>--%>
+<%--                </div>--%>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <form:input path="email" class="form-control" id="email" required="true"/>
-                    <form:errors path="email" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="phoneNumber" class="form-label">Phone Number:</label>
-                    <form:input path="phoneNumber" class="form-control" id="phoneNumber" required="true"/>
-                    <form:errors path="phoneNumber" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="address" class="form-label">Address:</label>
-                    <form:input path="address" class="form-control" id="address" required="true"/>
-                    <form:errors path="address" element="div" cssClass="error"/>
-                </div>
+<%--                <div class="mb-3">--%>
+<%--                    <label for="serviceDate" class="form-label">Service Date:</label>--%>
+<%--                    <form:input path="serviceDate" class="form-control" id="serviceDate" required="true"/>--%>
+<%--                    <form:errors path="serviceDate" element="div" cssClass="error"/>--%>
+<%--                </div>--%>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form:form>

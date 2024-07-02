@@ -13,7 +13,7 @@ import pl.coderslab.fixairproject.repository.DeviceRepository;
 @RequiredArgsConstructor
 public class DeviceService {
 
-  private DeviceRepository deviceRepository;
+  private final DeviceRepository deviceRepository;
 
   public List<Device> getAllDevice() {
     return deviceRepository.findAll();

@@ -22,7 +22,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "client")
 public class Client {
@@ -50,8 +49,8 @@ public class Client {
   @NotEmpty(message = "Address is required")
   private String address;
 
-  @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Device> devices = new ArrayList<>();
+  @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Device device;
 
 }
 
