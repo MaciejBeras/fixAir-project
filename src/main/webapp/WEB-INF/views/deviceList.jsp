@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FixAir</title>
+    <title>Device List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -43,42 +43,27 @@
             </nav>
         </div>
         <div class="col-md-9">
-            <h2>Clients List</h2>
+            <h2>Devices List</h2>
             <table class="table table-striped">
                 <thead class="table-dark">
                 <tr>
                     <th>Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Mail</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Actions</th>
+                    <th>Name</th>
+                    <th>Serial Number</th>
+                    <th>Installation Date</th>
+                    <th>Description</th>
+                    <th>Client</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="client" items="${clients}">
+                <c:forEach var="device" items="${devices}">
                     <tr>
-                        <td>${client.id}</td>
-                        <td>${client.firstName}</td>
-                        <td>${client.lastName}</td>
-                        <td>${client.email}</td>
-                        <td>${client.phoneNumber}</td>
-                        <td>${client.address}</td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/device/form" method="get" class="d-inline">
-                                <input type="hidden" name="clientId" value="${client.id}"/>
-                                <input type="submit" value="Add Device/ Device" class="btn btn-warning btn-sm"/>
-                            </form>
-
-                            <form:form action="/client/form/edit/${client.id}" method="post" class="d-inline">
-                                <input type="submit" value="Edit" class="btn btn-warning btn-sm"/>
-                            </form:form>
-                            <form:form action="/client/form/delete/${client.id}" method="post" class="d-inline"
-                                       onClick="return confirm('Are you sure?')">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>
-                            </form:form>
-                        </td>
+                        <td>${device.id}</td>
+                        <td>${device.name}</td>
+                        <td>${device.serialNumber}</td>
+                        <td>${device.installationDate}</td>
+                        <td>${device.description}</td>
+                        <td>${device.client.firstName} ${device.client.lastName}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

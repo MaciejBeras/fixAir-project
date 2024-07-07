@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Device Form</title>
+    <title>Device Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
             <nav class="spaced-buttons mb-4">
@@ -44,44 +44,43 @@
         </div>
         <div class="col-md-9">
             <h2>Client: ${device.client.firstName} ${device.client.lastName}</h2>
-            <h2>Add or edit device</h2>
-            <form:form action="${pageContext.request.contextPath}/device/form" modelAttribute="device" method="post">
-
-                <form:hidden path="id" id="id"/>
-                <form:hidden path="client.id" id="clientId"/>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <form:input path="name" class="form-control" id="name" required="true"/>
-                    <form:errors path="name" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="serialNumber" class="form-label">Serial Number:</label>
-                    <form:input path="serialNumber" class="form-control" id="serialNumber" required="true"/>
-                    <form:errors path="serialNumber" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <form:textarea path="description" class="form-control" id="description" rows="3"/>
-                <form:errors path="description"  element="div" cssClass="error"/>
-                </div>
-
-<%--                <div class="mb-3">--%>
-<%--                    <label for="installationDate" class="form-label">Installation Date:</label>--%>
-<%--                    <form:input path="installationDate" class="form-control" id="installationDate" required="true"/>--%>
-<%--                    <form:errors path="installationDate" element="div" cssClass="error"/>--%>
-<%--                </div>--%>
-
-<%--                <div class="mb-3">--%>
-<%--                    <label for="serviceDate" class="form-label">Service Date:</label>--%>
-<%--                    <form:input path="serviceDate" class="form-control" id="serviceDate" required="true"/>--%>
-<%--                    <form:errors path="serviceDate" element="div" cssClass="error"/>--%>
-<%--                </div>--%>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form:form>
+            <h2>Device:</h2>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Unit name</th>
+                    <th>Serial Number</th>
+                    <th>Installation Date</th>
+                    <th>Description</th>
+<%--                    <th>Client</th>--%>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${device.id}</td>
+                    <td>${device.name}</td>
+                    <td>${device.serialNumber}</td>
+                    <td>${device.installationDate}</td>
+                    <td>${device.description}</td>
+<%--                    <td>${device.client.firstName} ${device.client.lastName}</td>--%>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/service/form" method="get" class="d-inline">
+                            <input type="hidden" name="deviceId" value="${device.id}"/>
+                            <input type="submit" value="Add Service" class="btn btn-warning btn-sm"/>
+                        </form>
+                        <form:form action="/device/form/edit/${device.id}" method="post" class="d-inline">
+                            <input type="submit" value="Edit" class="btn btn-warning btn-sm"/>
+                        </form:form>
+                        <form:form action="/device/form/delete/${device.id}" method="post" class="d-inline"
+                                   onClick="return confirm('Are you sure?')">
+                            <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>
+                        </form:form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

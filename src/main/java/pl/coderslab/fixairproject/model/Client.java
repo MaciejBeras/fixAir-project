@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "client")
 public class Client {
@@ -40,6 +42,7 @@ public class Client {
   @Enumerated(EnumType.STRING)
   private Gender gender;
 
+  @Email
   @NotEmpty(message = "Email is required")
   private String email;
 
@@ -49,7 +52,7 @@ public class Client {
   @NotEmpty(message = "Address is required")
   private String address;
 
-  @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToOne(mappedBy = "client", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private Device device;
 
 }

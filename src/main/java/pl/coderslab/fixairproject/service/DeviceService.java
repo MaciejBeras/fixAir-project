@@ -28,7 +28,13 @@ public class DeviceService {
   }
 
   public void deleteDevice(Long id) {
+    log.info("Deleted device in service");
     deviceRepository.deleteById(id);
   }
+
+  public Optional<Device> getDeviceByClientId(Long clientId) {
+    return deviceRepository.findDeviceByClientId(clientId);
+  }
+
 
 }

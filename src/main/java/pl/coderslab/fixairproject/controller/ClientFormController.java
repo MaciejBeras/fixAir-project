@@ -40,7 +40,7 @@ public class ClientFormController {
   }
 
   @PostMapping
-  public String processClientForm(@Valid @ModelAttribute Client client, BindingResult result) {
+  public String processClientForm( @ModelAttribute @Valid Client client, BindingResult result) {
     if (result.hasErrors()) {
       return "clientForm";
     }

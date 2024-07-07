@@ -37,10 +37,9 @@
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary fixair-button">FixAir</a>
                 <a href="${pageContext.request.contextPath}/client/form" class="btn btn-primary">Add New Client</a>
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary">Client List</a>
-                <a href="${pageContext.request.contextPath}/device/form" class="btn btn-primary">Add New Device</a>
-                <a href="${pageContext.request.contextPath}/authors/form/all" class="btn btn-primary">Author List</a>
-                <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Add New Publisher</a>
-                <a href="${pageContext.request.contextPath}/publishers/form/all" class="btn btn-primary">Publisher List</a>
+                <a href="${pageContext.request.contextPath}/device/form/all" class="btn btn-primary">All devices list</a>
+                <a href="${pageContext.request.contextPath}/authors/form/all" class="btn btn-primary">All services history</a>
+                <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Contact</a>
             </nav>
         </div>
         <div class="col-md-9">

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,16 +27,26 @@ public class DeviceFormController {
   private final DeviceService deviceService;
   private final ClientService clientService;
 
+  @GetMapping("/all")
+  public String showAllDevices() {
+    return "deviceList";
+  }
 
   @GetMapping()
   public String showDeviceForm(@RequestParam("clientId") Long clientId, Model model) {
-    Device device = new Device();
-    Optional<Client> clientOptional = clientService.getClientById(clientId);
-    if (clientOptional.isPresent()) {
-      device.setClient(clientOptional.get());
+    Optional<Device> deviceOptional = deviceService.getDeviceByClientId(clientId);
+    if (deviceOptional.isPresent()) {
+      model.addAttribute("device", deviceOptional.get());
+      return "clientDevice";
+    } else {
+      Device device = new Device();
+      Optional<Client> clientOptional = clientService.getClientById(clientId);
+      if (clientOptional.isPresent()) {
+        device.setClient(clientOptional.get());
+      }
+      model.addAttribute("device", device);
+      return "deviceForm";
     }
-    model.addAttribute("device", device);
-    return "deviceForm";
   }
 
   @PostMapping()
@@ -43,4 +54,33 @@ public class DeviceFormController {
     deviceService.saveDevice(device);
     return "redirect:/client/form/all";
   }
+
+  @PostMapping("/edit/{id}")
+  public String editDevice(@PathVariable Long id, Model model) {
+    Optional<Device> optionalDevice = deviceService.getDeviceById(id);
+    if (optionalDevice.isPresent()) {
+      Device device = optionalDevice.get();
+      model.addAttribute("device", device);
+      log.info("Edited device with id {}", id);
+      return "deviceForm";
+    } else {
+      log.info("Device with id {} not found", id);
+      return "redirect:/device/form/all";
+    }
+  }
+
+
+  @PostMapping("/delete/{id}")
+  public String deleteDevice(@PathVariable Long id) {
+    deviceService.deleteDevice(id);
+    log.info("Deleted device with id {}", id);
+    return "redirect:/client/form/all";
+  }
+
+
+  @ModelAttribute("devices")
+  public List<Device> getDevices() {
+    return deviceService.getAllDevice();
+  }
+
 }
