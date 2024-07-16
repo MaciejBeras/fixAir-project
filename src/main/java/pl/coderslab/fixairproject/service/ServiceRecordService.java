@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.coderslab.fixairproject.model.Client;
+import pl.coderslab.fixairproject.model.Device;
 import pl.coderslab.fixairproject.model.ServiceRecord;
 import pl.coderslab.fixairproject.repository.ClientRepository;
 import pl.coderslab.fixairproject.repository.ServiceRecordRepository;
@@ -15,7 +16,7 @@ import pl.coderslab.fixairproject.repository.ServiceRecordRepository;
 @RequiredArgsConstructor
 public class ServiceRecordService {
 
-  private ServiceRecordRepository serviceRecordRepository;
+  private final ServiceRecordRepository serviceRecordRepository;
 
   public List<ServiceRecord> getAllServiceRecord() {
     return serviceRecordRepository.findAll();
@@ -31,6 +32,10 @@ public class ServiceRecordService {
 
   public void deleteServiceRecord(Long id) {
     serviceRecordRepository.deleteById(id);
+  }
+
+  public Optional<ServiceRecord> getServiceRecordByDeviceId(Long deviceId) {
+    return serviceRecordRepository.findServiceRecordByDeviceId(deviceId);
   }
 
 }

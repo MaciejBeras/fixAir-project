@@ -52,7 +52,7 @@ public class Device {
   @ToString.Exclude
   private Client client;
 
-
+  @ToString.Exclude
   @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ServiceRecord> serviceRecords = new ArrayList<>();
 

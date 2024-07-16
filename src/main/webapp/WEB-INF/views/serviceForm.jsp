@@ -38,28 +38,23 @@
                 <a href="${pageContext.request.contextPath}/client/form" class="btn btn-primary">Add New Client</a>
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary">Client List</a>
                 <a href="${pageContext.request.contextPath}/device/form/all" class="btn btn-primary">All devices list</a>
-                <a href="${pageContext.request.contextPath}/authors/form/all" class="btn btn-primary">All services history</a>
+                <a href="${pageContext.request.contextPath}/serviceRecord/form/all" class="btn btn-primary">All services history</a>
                 <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Contact</a>
             </nav>
         </div>
         <div class="col-md-9">
-            <h2>Client: ${device.client.firstName} ${device.client.lastName}</h2>
-            <h2>Add or edit device</h2>
-            <form:form action="${pageContext.request.contextPath}/device/form" modelAttribute="device" method="post">
+<%--            <h2>Device: ${serviceRecord.device.name}</h2>--%>
+            <h2>Device: </h2>
+            <h2>Add service record</h2>
+            <form:form action="${pageContext.request.contextPath}/serviceRecord/form" modelAttribute="serviceRecord" method="post">
 
                 <form:hidden path="id" id="id"/>
-                <form:hidden path="client.id" id="clientId"/>
+                <form:hidden path="device.id" id="deviceId"/>
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <form:input path="name" class="form-control" id="name" required="true"/>
-                    <form:errors path="name" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="serialNumber" class="form-label">Serial Number:</label>
-                    <form:input path="serialNumber" class="form-control" id="serialNumber" required="true"/>
-                    <form:errors path="serialNumber" element="div" cssClass="error"/>
+                    <label for="typeOfFault" class="form-label">Type od fault:</label>
+                    <form:input path="typeOfFault" class="form-control" id="typeOfFault" required="true"/>
+                    <form:errors path="typeOfFault" element="div" cssClass="error"/>
                 </div>
 
                 <div class="mb-3">

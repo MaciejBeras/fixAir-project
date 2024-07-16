@@ -66,7 +66,7 @@
                     <td>${device.description}</td>
 <%--                    <td>${device.client.firstName} ${device.client.lastName}</td>--%>
                     <td>
-                        <form action="${pageContext.request.contextPath}/service/form" method="get" class="d-inline">
+                        <form action="${pageContext.request.contextPath}/serviceRecord/form" method="get" class="d-inline">
                             <input type="hidden" name="deviceId" value="${device.id}"/>
                             <input type="submit" value="Add Service" class="btn btn-warning btn-sm"/>
                         </form>

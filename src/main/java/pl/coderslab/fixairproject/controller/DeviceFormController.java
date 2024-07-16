@@ -50,10 +50,22 @@ public class DeviceFormController {
   }
 
   @PostMapping()
-  public String processDeviceForm(@ModelAttribute Device device) {
+  public String processDeviceForm(@ModelAttribute Device device, BindingResult result, Model model) {
+    if (result.hasErrors()) {
+      return "deviceForm";
+    }
+    if (device.getId() != null) {
+      Optional<Device> existingDeviceOptional = deviceService.getDeviceById(device.getId());
+      if (existingDeviceOptional.isPresent()) {
+        Device existingDevice = existingDeviceOptional.get();
+        device.setServiceRecords(existingDevice.getServiceRecords());
+      }
+    }
     deviceService.saveDevice(device);
     return "redirect:/client/form/all";
   }
+
+
 
   @PostMapping("/edit/{id}")
   public String editDevice(@PathVariable Long id, Model model) {
