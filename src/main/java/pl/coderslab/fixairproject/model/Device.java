@@ -2,6 +2,7 @@ package pl.coderslab.fixairproject.model;
 
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,11 +40,9 @@ public class Device {
   @NotEmpty(message = "Serial number is required")
   private int serialNumber;
 
+
+  @Column(updatable = false)
   private LocalDateTime installationDate;
-
-  // usunąć serviceDate, zastąpić opisem.
-
-//  private LocalDateTime serviceDate;
 
   @Size(max = 600)
   private String description;
@@ -61,9 +60,5 @@ public class Device {
     installationDate = LocalDateTime.now();
   }
 
-  @PreUpdate
-  private void onUpdate() {
-    installationDate = LocalDateTime.now();
-  }
-
 }
+

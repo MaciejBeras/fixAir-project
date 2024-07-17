@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Device Form</title>
+    <title>Technical Support</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -25,17 +25,17 @@
       }
 
       .fixair-button {
-        height: calc(2 * 38px);
-        font-size: 2.5em;
+        height: calc(2 * 38px); /* Default button height in Bootstrap 5 is 38px */
+        font-size: 2.5em; /* Increase font size for better appearance */
       }
 
       .container {
-        margin-top: 50px;
+        margin-top: 50px; /* Adjust this value to lower or raise the page */
       }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
             <nav class="spaced-buttons mb-4">
@@ -54,30 +54,33 @@
             </nav>
         </div>
         <div class="col-md-9">
-<%--            <h2>Device: ${serviceRecord.device.name}</h2>--%>
-            <h2>Add service record</h2>
-            <form:form action="${pageContext.request.contextPath}/serviceRecord/form"
-                       modelAttribute="serviceRecord" method="post">
-
-                <form:hidden path="id" id="id"/>
-                <form:hidden path="device.id" id="deviceId"/>
-
-                <div class="mb-3">
-                    <label for="typeOfFault" class="form-label">Type of fault:</label>
-                    <form:input path="typeOfFault" class="form-control" id="typeOfFault"
-                                required="true"/>
-                    <form:errors path="typeOfFault" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label>
-                    <form:textarea path="description" class="form-control" id="description"
-                                   required="true" rows="3"/>
-                    <form:errors path="description" element="div" cssClass="error"/>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form:form>
+            <h2>Clients List</h2>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <%--                    <th>Id</th>--%>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Job Title</th>
+                    <th>Mail</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="technicalSupport" items="${technicalSupports}">
+                    <tr>
+                            <%--                        <td>${technicalSupport.id}</td>--%>
+                        <td>${technicalSupport.firstName}</td>
+                        <td>${technicalSupport.lastName}</td>
+                        <td>${technicalSupport.jobTitle}</td>
+                        <td>${technicalSupport.email}</td>
+                        <td>${technicalSupport.phoneNumber}</td>
+                        <td>${technicalSupport.address}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -25,9 +25,9 @@ public class TechnicalSupport {
 
   private String lastName;
 
-  private Gender gender;
+  private String gender;
 
-  private  String jobTitle;
+  private String jobTitle;
 
   private String email;
 

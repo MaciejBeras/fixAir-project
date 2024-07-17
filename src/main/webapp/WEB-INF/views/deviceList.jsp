@@ -39,7 +39,7 @@
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary">Client List</a>
                 <a href="${pageContext.request.contextPath}/device/form/all" class="btn btn-primary">All devices list</a>
                 <a href="${pageContext.request.contextPath}/serviceRecord/form/all" class="btn btn-primary">All services history</a>
-                <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Contact</a>
+                <a href="${pageContext.request.contextPath}/technicalSupport/all" class="btn btn-primary">Contact</a>
             </nav>
         </div>
         <div class="col-md-9">
