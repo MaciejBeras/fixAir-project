@@ -1,6 +1,7 @@
 package pl.coderslab.fixairproject.controller;
 
 
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,11 @@ public class ServiceRecordFormController {
   private final DeviceService deviceService;
   private final ServiceRecordService serviceRecordService;
 
+  @GetMapping("/all")
+  public String showAllServiceRecords() {
+    return "allServiceList";
+  }
+
   @GetMapping()
   public String showNewServiceRecordForm(@RequestParam("deviceId") Long deviceId, Model model) {
     ServiceRecord serviceRecord = new ServiceRecord();
@@ -40,6 +46,11 @@ public class ServiceRecordFormController {
   public String processServiceRecordForm(@ModelAttribute ServiceRecord serviceRecord) {
     serviceRecordService.saveServiceRecord(serviceRecord);
     return "redirect:/client/form/all";
+  }
+
+  @ModelAttribute("serviceRecords")
+  public List<ServiceRecord> getServiceRecords() {
+    return serviceRecordService.getAllServiceRecord();
   }
 
 }

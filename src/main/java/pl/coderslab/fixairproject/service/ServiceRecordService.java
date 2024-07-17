@@ -34,8 +34,9 @@ public class ServiceRecordService {
     serviceRecordRepository.deleteById(id);
   }
 
-  public Optional<ServiceRecord> getServiceRecordByDeviceId(Long deviceId) {
-    return serviceRecordRepository.findServiceRecordByDeviceId(deviceId);
+  public List<ServiceRecord> getServiceRecordByDeviceId(Long deviceId) {
+    return serviceRecordRepository.findServiceRecordByDeviceId(deviceId).orElse(List.of());
   }
+
 
 }

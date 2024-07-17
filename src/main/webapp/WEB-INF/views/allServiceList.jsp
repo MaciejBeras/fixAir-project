@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Device Form</title>
+    <title>Services List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -21,16 +21,16 @@
         margin-bottom: 3%;
       }
       .fixair-button {
-        height: calc(2 * 38px);
-        font-size: 2.5em;
+        height: calc(2 * 38px); /* Default button height in Bootstrap 5 is 38px */
+        font-size: 2.5em; /* Increase font size for better appearance */
       }
       .container {
-        margin-top: 50px;
+        margin-top: 50px; /* Adjust this value to lower or raise the page */
       }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
             <nav class="spaced-buttons mb-4">
@@ -43,33 +43,29 @@
             </nav>
         </div>
         <div class="col-md-9">
-            <h2>Client: ${device.client.firstName} ${device.client.lastName}</h2>
-            <h2>Add or edit device</h2>
-            <form:form action="${pageContext.request.contextPath}/device/form" modelAttribute="device" method="post">
-
-                <form:hidden path="id" id="id"/>
-                <form:hidden path="client.id" id="clientId"/>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <form:input path="name" class="form-control" id="name" required="true"/>
-                    <form:errors path="name" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                    <label for="serialNumber" class="form-label">Serial Number:</label>
-                    <form:input path="serialNumber" class="form-control" id="serialNumber" required="true"/>
-                    <form:errors path="serialNumber" element="div" cssClass="error"/>
-                </div>
-
-                <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <form:textarea path="description" class="form-control" id="description" rows="3"/>
-                <form:errors path="description"  element="div" cssClass="error"/>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form:form>
+            <h2>Services List</h2>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Device S/N</th>
+                    <th>Service date</th>
+                    <th>Type of fault</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="serviceRecord" items="${serviceRecords}">
+                    <tr>
+                        <td>${serviceRecord.id}</td>
+                        <td>${serviceRecord.device.serialNumber}</td>
+                        <td>${serviceRecord.serviceDate}</td>
+                        <td>${serviceRecord.typeOfFault}</td>
+                        <td>${serviceRecord.description}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

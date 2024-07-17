@@ -38,7 +38,7 @@
                 <a href="${pageContext.request.contextPath}/client/form" class="btn btn-primary">Add New Client</a>
                 <a href="${pageContext.request.contextPath}/client/form/all" class="btn btn-primary">Client List</a>
                 <a href="${pageContext.request.contextPath}/device/form/all" class="btn btn-primary">All devices list</a>
-                <a href="${pageContext.request.contextPath}/authors/form/all" class="btn btn-primary">All services history</a>
+                <a href="${pageContext.request.contextPath}/serviceRecord/form/all" class="btn btn-primary">All services history</a>
                 <a href="${pageContext.request.contextPath}/publishers/form" class="btn btn-primary">Contact</a>
             </nav>
         </div>
@@ -70,6 +70,11 @@
                             <input type="hidden" name="deviceId" value="${device.id}"/>
                             <input type="submit" value="Add Service" class="btn btn-warning btn-sm"/>
                         </form>
+                        <form:form action="/serviceRecord/form/serviceRecordsByDevice" method="get" class="d-inline">
+                            <input type="hidden" name="deviceId" value="${device.id}"/>
+                            <input type="submit" value="Service List" class="btn btn-warning btn-sm"/>
+                        </form:form>
+
                         <form:form action="/device/form/edit/${device.id}" method="post" class="d-inline">
                             <input type="submit" value="Edit" class="btn btn-warning btn-sm"/>
                         </form:form>

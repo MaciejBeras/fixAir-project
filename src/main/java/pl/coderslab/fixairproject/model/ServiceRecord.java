@@ -34,7 +34,7 @@ public class ServiceRecord {
 
   @ManyToOne
   @ToString.Exclude
-  @JoinColumn(name = "device_id", referencedColumnName = "id")
+  @JoinColumn(name = "device_id")
   private Device device;
 
   @PrePersist
