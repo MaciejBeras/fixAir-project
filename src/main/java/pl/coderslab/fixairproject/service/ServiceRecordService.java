@@ -17,6 +17,7 @@ import pl.coderslab.fixairproject.repository.ServiceRecordRepository;
 public class ServiceRecordService {
 
   private final ServiceRecordRepository serviceRecordRepository;
+  private final DeviceService deviceService;
 
   public List<ServiceRecord> getAllServiceRecord() {
     return serviceRecordRepository.findAll();
@@ -36,6 +37,13 @@ public class ServiceRecordService {
 
   public List<ServiceRecord> getServiceRecordByDeviceId(Long deviceId) {
     return serviceRecordRepository.findServiceRecordByDeviceId(deviceId).orElse(List.of());
+  }
+
+  public ServiceRecord createServiceRecordForDevice(Long deviceId) {
+    ServiceRecord serviceRecord = new ServiceRecord();
+    Optional<Device> deviceOptional = deviceService.getDeviceById(deviceId);
+    deviceOptional.ifPresent(serviceRecord::setDevice);
+    return serviceRecord;
   }
 
 

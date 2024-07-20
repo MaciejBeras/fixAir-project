@@ -39,22 +39,9 @@ public class ClientFormController {
     return "clientForm";
   }
 
-  @PostMapping
+  @PostMapping()
   public String processClientForm(@ModelAttribute @Valid Client client, BindingResult result) {
-    if (result.hasErrors()) {
-      return "clientForm";
-    }
-
-    if (client.getId() != null) {
-      Optional<Client> existingClient = clientService.getClientById(client.getId());
-      if (existingClient.isPresent()) {
-        client.setDevice(existingClient.get().getDevice());
-      }
-    }
-
-    clientService.saveClient(client);
-    log.info("Saved {}", client);
-    return "redirect:/client/form/all";
+    return clientService.processClientForm(client, result);
   }
 
   @PostMapping("/edit/{id}")

@@ -1,10 +1,12 @@
 package pl.coderslab.fixairproject.service;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import pl.coderslab.fixairproject.model.Client;
 import pl.coderslab.fixairproject.repository.ClientRepository;
 
@@ -29,6 +31,21 @@ public class ClientService {
 
   public void deleteClient(Long id) {
     clientRepository.deleteById(id);
+  }
+
+  public String processClientForm(@Valid Client client, BindingResult result) {
+    if (result.hasErrors()) {
+      return "clientForm";
+    }
+    if (client.getId() != null) {
+      Optional<Client> existingClient = getClientById(client.getId());
+      if (existingClient.isPresent()) {
+        client.setDevice(existingClient.get().getDevice());
+      }
+    }
+    saveClient(client);
+    log.info("Saved {}", client);
+    return "redirect:/client/form/all";
   }
 
 }

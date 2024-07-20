@@ -23,7 +23,6 @@ import pl.coderslab.fixairproject.service.ServiceRecordService;
 @RequiredArgsConstructor
 public class ServiceRecordFormController {
 
-  private final DeviceService deviceService;
   private final ServiceRecordService serviceRecordService;
 
   @GetMapping("/all")
@@ -32,12 +31,8 @@ public class ServiceRecordFormController {
   }
 
   @GetMapping()
-  public String showNewServiceRecordForm(@RequestParam("deviceId") Long deviceId, Model model) {
-    ServiceRecord serviceRecord = new ServiceRecord();
-    Optional<Device> deviceOptional = deviceService.getDeviceById(deviceId);
-    if (deviceOptional.isPresent()) {
-      serviceRecord.setDevice(deviceOptional.get());
-    }
+  public String showServiceRecordForm(@RequestParam("deviceId") Long deviceId, Model model) {
+    ServiceRecord serviceRecord = serviceRecordService.createServiceRecordForDevice(deviceId);
     model.addAttribute("serviceRecord", serviceRecord);
     return "serviceForm";
   }

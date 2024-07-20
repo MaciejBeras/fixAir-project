@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +26,10 @@ public class ServiceRecord {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long Id;
 
+  @NotEmpty
   private LocalDateTime serviceDate;
 
+  @NotEmpty
   private String typeOfFault;
 
   private String description;

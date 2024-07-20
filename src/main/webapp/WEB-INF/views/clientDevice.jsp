@@ -70,8 +70,8 @@
                             <input type="hidden" name="deviceId" value="${device.id}"/>
                             <input type="submit" value="Add Service" class="btn btn-warning btn-sm"/>
                         </form>
-                        <form:form action="/serviceRecord/form/serviceRecordsByDevice" method="get" class="d-inline">
-                            <input type="hidden" name="deviceId" value="${device.id}"/>
+                        <form:form action="/serviceRecord/form/all" method="get" class="d-inline">
+<%--                            <input type="hidden" name="deviceId" value="${device.id}"/>--%>
                             <input type="submit" value="Service List" class="btn btn-warning btn-sm"/>
                         </form:form>
 
