@@ -39,9 +39,7 @@ public class ClientService {
     }
     if (client.getId() != null) {
       Optional<Client> existingClient = getClientById(client.getId());
-      if (existingClient.isPresent()) {
-        client.setDevice(existingClient.get().getDevice());
-      }
+      existingClient.ifPresent(value -> client.setDevice(value.getDevice()));
     }
     saveClient(client);
     log.info("Saved {}", client);
